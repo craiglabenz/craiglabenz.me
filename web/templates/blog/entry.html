@@ -18,7 +18,7 @@
     {% endif %}
 
     <div class="entry-body-wrapper">
-      {% render_with_snippets entry.body_html %}
+      {{ entry.body_html|safe }}
     </div> <!-- End of .entry-body-wrapper -->
 
       {% if entry.enable_comments %}

@@ -3,16 +3,14 @@ import datetime
 # Django
 from django.db import models
 from django.core.urlresolvers import reverse
-from django.utils.text import slugify
 
 # 3rd Party
-from markdown import markdown
 from taggit.managers import TaggableManager
 
 # Local
 from blog.querysets import EntryQuerySet
 from core.models import BaseModel
-from core.utils import zero_pad
+from core.utils import zero_pad, markdown
 
 
 class Category(BaseModel):

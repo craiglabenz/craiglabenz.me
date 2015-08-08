@@ -1,9 +1,11 @@
 import datetime
+import hashlib
 import logging
 import re
 import socket
 import termcolor
 import time
+from markdown import markdown as _markdown
 
 # Django
 from django.conf import settings
@@ -98,3 +100,58 @@ def zero_pad(s, length):
         s = "0" + s
 
     return s
+
+
+code_delimiter = "|||"
+code_delimiter_len = len(code_delimiter)
+vulnerable_languages = ["markup", "xml"]
+
+
+def markdown(attr):
+
+    snippet_hash_map = {}
+
+    while "|||" in attr:
+        attr, most_recent_snippet = parse_code_block(attr)
+
+        snippet_hash = hashlib.md5(most_recent_snippet.encode('utf-8')).hexdigest()
+        snippet_hash_map[snippet_hash] = most_recent_snippet
+
+        print(snippet_hash)
+        attr = attr.replace(most_recent_snippet, snippet_hash)
+
+        if not attr.endswith(snippet_hash):
+            fancier_snippet = snippet_hash + """\n<div class="entry-body-wrapper">"""
+            attr = attr.replace(snippet_hash, fancier_snippet)
+
+    marked_down = _markdown(attr)
+
+    for key, value in snippet_hash_map.items():
+        marked_down = marked_down.replace(key, value)
+
+    return marked_down
+
+
+def parse_code_block(attr):
+    start_pos = attr.find(code_delimiter)
+    next_newline_pos = attr[code_delimiter_len + start_pos:].find("\n") + start_pos + code_delimiter_len
+
+    # Snippet language
+    snippet_language = attr[start_pos + code_delimiter_len:next_newline_pos - 1]
+
+    # Capture all the code
+    snippet_end = attr[next_newline_pos:].find("|||") + next_newline_pos
+    code = attr[next_newline_pos + 1:snippet_end]
+
+    # Handle language-specific prism gotchas
+    print('snippet_language', snippet_language)
+    if snippet_language in vulnerable_languages:
+        code = code.replace("<", "&lt;")
+
+    fancy_snippet = """
+        </div> <!-- End of .entry-body-wrapper -->
+        <pre class="prism"><code class="language-{snippet_language}">{code}</code></pre>
+    """.format(snippet_language=snippet_language, code=code)
+
+    # Return everything up until the slice, then the new and improved snippet, then everything after the slice ends
+    return attr[:start_pos] + fancy_snippet + attr[snippet_end + code_delimiter_len:], fancy_snippet
