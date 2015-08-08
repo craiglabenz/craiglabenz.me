@@ -42,10 +42,6 @@
     <![endif]-->
   </head>
 
-  {% if request.user.is_authenticated %}
-  <p>{{ settings.SECRET_KEY }}</p>
-  {% endif %}
-
   <body{% block bodyattrs %}{% endblock bodyattrs %}>
 
     {% block nav %}
