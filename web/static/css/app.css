@@ -53,6 +53,11 @@ code {font-size:0.85em !important;}
   margin:1.8em 0 0.8em;
 }
 
+.entry-body-wrapper h1:first-child, .entry-body-wrapper h2:first-child, .entry-body-wrapper h3:first-child, .entry-body-wrapper h4:first-child, .entry-body-wrapper h5:first-child {
+  margin-top:0.5em;
+}
+
+
 .entry-header h1, .entry-header h2 a {
   color:#111;
   font-weight:bold;
@@ -77,6 +82,10 @@ code {font-size:0.85em !important;}
   border-bottom:1px solid #ccc;
 }
 
+#blogPosts > li:last-child {
+  border-bottom:0;
+}
+
 #blogPosts a {
   text-decoration: none;
 }
@@ -99,6 +108,10 @@ code {font-size:0.85em !important;}
 
 .entry-detail .entry-body-wrapper {
   padding-left:30px;
+}
+
+.entry-list .entry-header {
+  margin-bottom: 15px;
 }
 
 .entry-detail .entry-body-wrapper h2,
