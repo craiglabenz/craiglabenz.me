@@ -2,7 +2,7 @@
 /* GENERAL */
 /********************************/
 * { font-family: Lato, Helvetica, 'Open Sans', sans-serif; }
-p { font-size: 16px; color: #333; line-height: 1.5; font-weight:300; }
+p, li { font-size:1.3em; color: #333; line-height: 1.5; font-weight:300; }
 a {font-weight:400;}
 .thin {font-weight:300 !important;}
 .thick {font-weight:400 !important;}
@@ -23,7 +23,7 @@ strong {font-weight:700 !important;}
   padding:40px 10% 40px 0px;
 }
 
-#header p, #header > div {
+#header > p, #header > div {
   padding:0px 30px;
 }
 
@@ -78,22 +78,67 @@ strong {font-weight:700 !important;}
   color:#000;
 }
 
-#blogPosts h2 {
-  color:#333;
-  padding-top:20px;
-  font-weight:800;
+.entry-body-wrapper {
+    padding:10px 30px 30px 10px;
+}
+
+.entry-detail .entry-body-wrapper {
+  padding-left:30px;
+}
+
+.entry-detail .entry-body-wrapper h2,
+.entry-list .entry-header h2 {
+  font-size:2.2em;
+  font-weight:bold;
+}
+
+.entry-list .entry-body-wrapper h2,
+.entry-detail .entry-body-wrapper h3 {
+  font-size:1.8em;
+  font-weight:bold;
+}
+
+.entry-list .entry-body-wrapper h3,
+.entry-detail .entry-body-wrapper h4 {
+  font-size:1.5em;
+  font-weight:bold;
+}
+
+.entry-detail .entry-body-wrapper p, .entry-detail .entry-body-wrapper li {
+  font-weight:300;
+  line-height:1.5;
+}
+
+.entry-list .entry-body-wrapper p, .entry-list .entry-body-wrapper li {
+  font-weight:300;
+  font-size:1.0em;
+  line-height:1.5;
+}
+
+#postHeroImage {
+    margin-top:30px;
+    height:200px;
+    width:100%;
+}
+
+.prism {
+    border-left:0;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    overflow: visible;
+    margin-right:2% !important;
 }
 
 .entry-date {
   text-transform: uppercase;
   font-size:1.0em;
-  color:#ccc;
+  color:#aaa;
   margin-right:10px;
   position:relative;
   top:2px;
 }
 
-.entry-header.entry-detail .entry-date {
+.entry-header-detail .entry-date {
   color:#888;
 }
 
@@ -106,12 +151,6 @@ strong {font-weight:700 !important;}
 }
 a.entry-tag:hover {
   text-decoration:none;
-}
-
-#blogPosts .entry-body p {
-  font-size:1.1em;
-  color:#888;
-  line-height:2.0;
 }
 
 .read-more {
@@ -132,7 +171,6 @@ a.entry-tag:hover {
   background-color:#1E629C;
   color:white;
 }
-
 
 /********************************/
 /* ARCHIVE */

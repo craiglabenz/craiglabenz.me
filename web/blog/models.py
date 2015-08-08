@@ -99,7 +99,7 @@ class Entry(BaseModel):
             12: 'December',
         }
 
-        return "{day_of_week} {day} {month} {year}".format(
+        return "{day_of_week} {month} {day} {year}".format(
             day_of_week=weekday_map[self.published_on.weekday()],
             month=month_map[self.published_on.month],
             day=zero_pad(self.published_on.day, 2),

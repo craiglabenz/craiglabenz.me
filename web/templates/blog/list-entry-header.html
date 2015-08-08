@@ -5,7 +5,7 @@
     </a>
   </h2>
   <div>
-    <span class="entry-date">JUNE 22 2015</span>
+    <span class="entry-date">{{ entry.formatted_date_str }}</span>
     {% for tag in entry.tags.all %}
       <a href="{% url 'entries_by_tag' tag_name=tag.name %}" class="entry-tag tag-{{ tag.slug }}"><span>{{ tag.name }}</span></a>
     {% endfor %}
