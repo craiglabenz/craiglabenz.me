@@ -4,9 +4,21 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+# Local
+from sitemap import CoreSitemap
+from blog.sitemap import BlogSitemap
+
+
+sitemaps = {
+    'static': CoreSitemap,
+    'blog': BlogSitemap
+}
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+
     url(r'^', include('blog.urls')),
 ]
 
