@@ -6,6 +6,8 @@ django-suit==0.2.14
 django-taggit==0.16.2
 ipython==3.2.1
 ipdb==0.8.1
-fabric
+# fabric
 Markdown==2.6.2
 pytz==2015.4
+sqlparse==0.1.15
+termcolor==1.1.0

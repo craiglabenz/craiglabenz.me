@@ -14,6 +14,7 @@ SITE_PORT = 80
 
 
 STATIC_URL = 'http://craiglabenz.me/static/'
+STATIC_ROOT = '/home/django/craigblog/web/collected_static/'
 STATICFILES_DIRS = (
     BASE_DIR + '/static',
     BASE_DIR + '/media',
