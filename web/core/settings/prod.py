@@ -8,6 +8,7 @@ with open('/etc/secret_key.txt') as f:
 ALLOWED_HOSTS = ['craiglabenz.me']
 
 
+DEBUG = False
 ENV = "production"
 SITE_HOST = ALLOWED_HOSTS[0]
 SITE_PORT = 80

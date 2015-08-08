@@ -46,6 +46,7 @@ DJANGO_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
 )
 
@@ -83,6 +84,7 @@ TEMPLATES = [
         'DIRS': [
             '/',
             'templates/',
+            'django/contrib/sitemaps/templates/',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

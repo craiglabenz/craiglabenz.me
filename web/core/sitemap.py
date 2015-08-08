@@ -8,7 +8,7 @@ class CoreSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return ['home', 'about', 'archive', 'contact']
+        return ['home', 'about', 'archive']
 
     def location(self, item):
         return reverse(item)

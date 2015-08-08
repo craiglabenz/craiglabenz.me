@@ -10,7 +10,7 @@ class BlogSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return Entry.live.all()
+        return Entry.objects.live()
 
     def lastmod(self, obj):
         return obj.updated_at or obj.published_on
