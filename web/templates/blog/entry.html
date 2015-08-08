@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/prism.css' %}">
-{% endblock css %}
-
 {% block innerHeader %}
   {% include 'blog/detail-entry-header.html' with entry=entry %}
 {% endblock innerHeader %}
