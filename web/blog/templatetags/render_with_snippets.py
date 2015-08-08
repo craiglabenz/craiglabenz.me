@@ -1,6 +1,3 @@
-# System
-import re
-
 # Django
 from django import template
 
@@ -20,6 +17,11 @@ def do_render_with_snippets(parser, token):
 
 
 class SnippetNode(template.Node):
+
+    code_delimiter = "|||"
+    code_delimiter_len = len(code_delimiter)
+
+    vulnerable_languages = ["markup", "xml"]
 
     def __init__(self, obj, attr):
         '''
@@ -41,39 +43,36 @@ class SnippetNode(template.Node):
         # Extract the corresponding attribute (likely something like `body_html`)
         attr = getattr(obj, self.attr)
 
-        # This is our global pattern
-        pattern = r'-s-[\w\-]+-'
+        while "|||" in attr:
+            attr, most_recent_snippet = self.parse_code_block(attr)
 
-        while True:
-            # Are there anymore matches?
-            matches = re.search(pattern, attr)
-            if matches is None:
-                # Bail if not, of course
-                break
-
-            # Pull out the exact string that matched
-            match = matches.group()
-
-            # Extract the snippet's PK from the match
-            snippet_slug_match = match[3:-1]
-
-            # Get that snippet
-            snippet = obj.snippets_dict[snippet_slug_match]
-
-            # Run a very simple replace of the match and its
-            # ultimate highlighted code
-            fancy_snippet = """
-                </div> <!-- End of .entry-body-wrapper -->
-                <pre class="prism"><code class="language-{snippet_language}">{code}</code></pre>
-            """.format(
-                snippet_language=snippet.language.prism_tag,
-                code=snippet.get_prepared_code()
-            )
-            attr = attr.replace(match, fancy_snippet)
-
-            if not attr.endswith(fancy_snippet):
-                fancier_snippet = fancy_snippet + """\n<div class="entry-body-wrapper">"""
-                attr = attr.replace(fancy_snippet, fancier_snippet)
+            if not attr.endswith(most_recent_snippet):
+                fancier_snippet = most_recent_snippet + """\n<div class="entry-body-wrapper">"""
+                attr = attr.replace(most_recent_snippet, fancier_snippet)
 
         # Once the loop breaks, we're good
         return attr
+
+    def parse_code_block(self, attr):
+        start_pos = attr.find(self.code_delimiter)
+        next_newline_pos = attr[self.code_delimiter_len + start_pos:].find("\n") + start_pos + self.code_delimiter_len
+
+        # Snippet language
+        snippet_language = attr[start_pos + self.code_delimiter_len:next_newline_pos]
+
+        # Capture all the code
+        snippet_end = attr[next_newline_pos:].find("|||") + next_newline_pos
+        code = attr[next_newline_pos:snippet_end]
+
+        # Handle language-specific prism gotchas
+        if snippet_language in self.vulnerable_languages:
+            code = code.replace("<", "&lt;")
+
+        fancy_snippet = """
+            </div> <!-- End of .entry-body-wrapper -->
+            <pre class="prism"><code class="language-{snippet_language}">{code}</code></pre>
+        """.format(snippet_language=snippet_language, code=code)
+
+        # Return everything up until the slice, then the new and improved snippet, then everything after the slice ends
+        return attr[:start_pos] + fancy_snippet + attr[snippet_end + self.code_delimiter_len:], fancy_snippet
+

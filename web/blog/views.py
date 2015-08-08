@@ -16,7 +16,7 @@ class EntryDetailView(TemplateView):
 
     def get_context_data(self, **kwargs):
         try:
-            entry = Entry.objects.filter(slug=kwargs["slug"]).prefetch_related("snippets__language").first()
+            entry = Entry.objects.filter(slug=kwargs["slug"]).first()
         except Entry.DoesNotExist:
             raise Http404
 

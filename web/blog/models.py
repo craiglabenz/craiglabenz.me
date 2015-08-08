@@ -106,18 +106,6 @@ class Entry(BaseModel):
             year=self.published_on.year
         ).upper()
 
-    @property
-    def snippets_dict(self):
-        return self.get_snippets_as_dict()
-
-    def get_snippets_as_dict(self):
-        if not hasattr(self, '_snippets_dict'):
-            self._snippets_dict = {}
-            for snippet in self.snippets.all():
-                self._snippets_dict[snippet.slug] = snippet
-                self._snippets_dict[snippet.title] = snippet
-        return self._snippets_dict
-
     def save(self, **kwargs):
         self.format_markdown()
         super().save(**kwargs)
@@ -133,52 +121,6 @@ class Entry(BaseModel):
             'day': self.published_on.strftime("%d"),
             'slug': self.slug
         })
-
-
-class Language(BaseModel):
-    name = models.CharField(max_length=50)
-    prism_tag = models.CharField(max_length=50, verbose_name="PRISM Tag")
-
-    class Meta:
-        verbose_name = "Language"
-        verbose_name_plural = "Languages"
-
-    def as_str(self):
-        return self.name
-
-
-class Snippet(BaseModel):
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True, help_text="Will be generated if left blank.")
-
-    language = models.ForeignKey(Language, related_name="snippets")
-    code = models.TextField()
-
-    entry = models.ForeignKey(Entry, related_name="snippets")
-
-    class Meta:
-        verbose_name = "Snippet"
-        verbose_name_plural = "Snippets"
-
-    def as_str(self):
-        return self.title
-
-    def save(self, **kwargs):
-        self.ensure_slug()
-        super().save(**kwargs)
-
-    def ensure_slug(self):
-        if not self.slug:
-            self.slug = slugify(self.title)
-
-    def get_prepared_code(self):
-        code = self.code
-
-        # Language-specific prism gotchas
-        if self.language.prism_tag == "markup":
-            code = code.replace("<", "&lt;")
-
-        return code
 
 
 class TagColor(BaseModel):

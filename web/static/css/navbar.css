@@ -8,6 +8,10 @@
   padding-top:20;
 }
 
+#navbar, #navbar li, #navbar p {
+  font-family: 'Lato', Helvetica, 'Open Sans', sans-serif;
+}
+
 #navbar a {
   color:white;
 }
