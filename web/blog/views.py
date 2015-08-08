@@ -30,7 +30,7 @@ class HomeView(TemplateView):
     template_name = "base.html"
 
     def get_entries_queryset(self):
-        return Entry.objects.live().with_meta_data()
+        return Entry.objects.live().with_meta_data().order_by("-published_on")
 
     def get_extra_context_data(self):
         return {}
@@ -66,7 +66,7 @@ class EntriesByCategoryView(HomeView):
         return self._cat
 
     def get_entries_queryset(self):
-        return self.category.entries.live().with_meta_data()
+        return self.category.entries.live().with_meta_data().order_by("-published_on")
 
     def get_extra_context_data(self):
         return {
