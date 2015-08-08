@@ -8,6 +8,7 @@ a {font-weight:400;}
 .thick {font-weight:400 !important;}
 a:hover {text-decoration:none;}
 ul { padding: 0px; }
+ol ul {padding-left:30px; margin-bottom:15px;}
 ol { padding-left: 20px; }
 pre { font-family: Consolas, Courier New, monospace !important; font-size:18px;}
 strong {font-weight:700 !important;}
