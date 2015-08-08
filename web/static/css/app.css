@@ -1,8 +1,8 @@
 /********************************/
 /* GENERAL */
 /********************************/
-* { font-family: Lato, Helvetica, 'Open Sans', sans-serif; }
-p, li { font-size:1.3em; color: #333; line-height: 1.5; font-weight:300; }
+h1, h2, h3, h4, h5 { font-family: Lato, sans-serif; }
+p, li { font-family: Helvetica, 'Open Sans', ; font-size:16px; color: #333; line-height: 1.5; font-weight:300; }
 a {font-weight:400;}
 .thin {font-weight:300 !important;}
 .thick {font-weight:400 !important;}
@@ -11,6 +11,13 @@ ul { padding: 0px; }
 ol { padding-left: 20px; }
 pre { font-family: Consolas, Courier New, monospace !important; font-size:18px;}
 strong {font-weight:700 !important;}
+code {font-size:0.75em;}
+.prism {
+  padding-left:30px !important;
+}
+.prism code {
+  font-size:16px;
+}
 
 @media (min-width: 768px) {
   #pageWrapper {
