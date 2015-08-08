@@ -1,7 +1,7 @@
 /********************************/
 /* GENERAL */
 /********************************/
-h1, h2, h3, h4, h5 { font-family: Lato, sans-serif; margin:1.8em 0; }
+h1, h2, h3, h4, h5 { font-family: Lato, sans-serif; }
 p, li { font-family: Helvetica, 'Open Sans', ; font-size:16px; color: #333; line-height: 1.5; font-weight:300; }
 p {margin-bottom:1.3em;}
 a {font-weight:400;}
@@ -47,6 +47,10 @@ code {font-size:0.85em !important;}
 }
 #header a:hover {
   color:#00479F; /*blue+20%*/
+}
+
+.entry-body-wrapper h1, .entry-body-wrapper h2, .entry-body-wrapper h3, .entry-body-wrapper h4, .entry-body-wrapper h5 {
+  margin:1.8em 0 0.8em;
 }
 
 .entry-header h1, .entry-header h2 a {
