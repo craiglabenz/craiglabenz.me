@@ -165,7 +165,8 @@ strong {font-weight:700 !important;}
   padding:5px;
   margin-right:5px;
   border-radius:3px;
-  font-size:10px;
+  margin-bottom:10px;
+  font-size:14px !important;
   letter-spacing: 0.5px
 }
 a.entry-tag:hover {

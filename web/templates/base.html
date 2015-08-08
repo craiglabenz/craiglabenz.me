@@ -27,8 +27,8 @@
       .entry-tag {background-color: #aaa; }
       .entry-tag, .entry-tag:hover {color:#fff !important;}
       {% if tag_colors %}{% for tag_color in tag_colors %}
-      .entry-tag.tag-{{ tag_color.tag_name }} {background-color:#{{ tag_color.color_hex }};}
-      .entry-tag.tag-{{ tag_color.tag_name }} span:hover {color: #{{ tag_color.text_color }} !important; border-bottom: 1px solid #{{ tag_color.text_color }};}
+      .entry-tag.tag-{{ tag_color.tag_name }} {color: #{{ tag_color.text_color }} !important; background-color:#{{ tag_color.color_hex }};}
+      .entry-tag.tag-{{ tag_color.tag_name }} span:hover {border-bottom: 1px solid #{{ tag_color.text_color }};}
       {% endfor %}{% endif %}
     </style>
 
