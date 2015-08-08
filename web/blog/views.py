@@ -30,7 +30,7 @@ class HomeView(TemplateView):
     template_name = "base.html"
 
     def get_entries_queryset(self):
-        return Entry.objects.live().with_meta_data().order_by("-published_on")
+        return Entry.objects.live().with_meta_data()
 
     def get_extra_context_data(self):
         return {}
@@ -66,7 +66,7 @@ class EntriesByCategoryView(HomeView):
         return self._cat
 
     def get_entries_queryset(self):
-        return self.category.entries.live().with_meta_data().order_by("-published_on")
+        return self.category.entries.live().with_meta_data()
 
     def get_extra_context_data(self):
         return {
@@ -87,7 +87,7 @@ class ArchiveView(TemplateView):
 
     def get_ordered_entries(self):
         ordered_entries_by_month = collections.OrderedDict()
-        for entry in Entry.objects.live().order_by("-published_on"):
+        for entry in Entry.objects.live().with_meta_data():
             date_key = entry.published_on.strftime('%B %Y')
             if date_key not in ordered_entries_by_month:
                 ordered_entries_by_month[date_key] = []
