@@ -3,7 +3,6 @@
 {% load render_with_snippets %}
 
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/entry.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/prism.css' %}">
 {% endblock css %}
 
@@ -20,10 +19,11 @@
 
     <div class="entry-body-wrapper">
       {% render_with_snippets entry.body_html %}
+    </div> <!-- End of .entry-body-wrapper -->
+
       {% if entry.enable_comments %}
         {% include 'blog/comments.html' %}
       {% endif %}
-    </div> <!-- End of .entry-body-wrapper -->
 
   </div> <!-- End of .entry-detail -->
 

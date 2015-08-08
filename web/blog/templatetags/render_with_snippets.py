@@ -75,19 +75,25 @@ class SnippetNode(template.Node):
                 fancier_snippet = fancy_snippet + """\n<div class="entry-body-wrapper">"""
                 attr = attr.replace(fancy_snippet, fancier_snippet)
 
+        pattern = r'<code>(?P<snippet_language>[a-z]{2,6})\n(?P<code>.*)</code>'
+
+        while True:
+            # Are there anymore matches?
+            matches = re.search(pattern, attr)
+            if matches is None:
+                # Bail if not, of course
+                break
+
+            ad_hoc_snippet = """
+                </div> <!-- End of .entry-body-wrapper -->
+                <pre class="prism"><code class="language-{snippet_language}">{code}</code></pre>
+            """.format(**matches.groupdict())
+
+            attr = attr.replace(matches.group(), ad_hoc_snippet)
+
+            if not attr.endswith(ad_hoc_snippet):
+                ad_hoccier_snippet = ad_hoc_snippet + """\n<div class="entry-body-wrapper">"""
+                attr = attr.replace(ad_hoc_snippet, ad_hoccier_snippet)
+
         # Once the loop breaks, we're good
         return attr
-
-# register.tag('render_with_snippets', do_render_with_snippets)
-
-
-def find_str(s, char):
-    index = 0
-    if char in s:
-        c = char[0]
-        for ch in s:
-            if ch == c:
-                if s[index:index + len(char)] == char:
-                    return index
-            index += 1
-    return -1

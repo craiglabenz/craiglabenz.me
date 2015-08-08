@@ -79,7 +79,7 @@ strong {font-weight:700 !important;}
 }
 
 .entry-body-wrapper {
-    padding:10px 30px 30px 10px;
+    padding:10px 30px 5px 10px;
 }
 
 .entry-detail .entry-body-wrapper {
@@ -266,4 +266,9 @@ a.entry-tag:hover {
 .disqus-wrapper {
   padding:0 20px;
   margin-top:30px;
+}
+
+#comments {
+  margin-top:30px;
+  padding:0 20px;
 }
