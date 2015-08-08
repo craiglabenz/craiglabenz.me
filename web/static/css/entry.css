@@ -1,0 +1,30 @@
+#entryHeader {
+    padding:30px 30px 0 30px;
+}
+
+#entryHeader h1 {
+    font-weight:800;
+}
+
+.entry-body-wrapper {
+    padding:30px 30px 30px 30px;
+}
+
+.entry-body-wrapper p {
+    font-size:18px;
+    line-height:1.8;
+}
+
+#postHeroImage {
+    margin-top:30px;
+    height:200px;
+    width:100%;
+}
+
+.prism {
+    border-left:0;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    overflow: visible;
+    margin-right:2% !important;
+}

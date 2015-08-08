@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_with_snippets %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/entry.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/prism.css' %}">
+{% endblock css %}
+
+{% block innerHeader %}
+  {% include 'blog/detail-entry-header.html' with entry=entry %}
+{% endblock innerHeader %}
+
+{% block content %}
+  {% if entry.hero_image %}
+  <img id="postHeroImage" src="{% static 'blog/you-are-thirty.jpg' %}" />
+  {% endif %}
+
+  <div class="entry-body-wrapper">
+    {% render_with_snippets entry.body_html %}
+
+    {% if entry.enable_comments %}
+      <section>
+          <div class="disqus-wrapper">
+              <div id="disqus_thread"></div>
+          </div>
+          <br class="clear">
+      </section>
+      <script type="text/javascript">
+          var disqus_shortname = 'craiglabenz';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    {% endif %}
+
+  </div>
+
+{% endblock content %}
+
+{% block js %}
+  <script src="{% static 'js/prism.js' %}"></script>
+{% endblock js %}

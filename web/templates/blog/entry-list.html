@@ -1,0 +1,10 @@
+{% load render_with_snippets %}
+<li>
+  {% include 'blog/list-entry-header.html' with entry=entry %}
+  <div class="entry-body">
+    {% render_with_snippets entry.excerpt_html %}
+    <a class="read-more" href="{{ entry.get_absolute_url }}">
+      READ MORE&nbsp;&nbsp;<span class="fa fa-arrow-right"></span>
+    </a>
+  </div>
+</li>

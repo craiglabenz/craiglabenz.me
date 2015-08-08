@@ -1,0 +1,11 @@
+django==1.8.3
+django-ace==1.0.2
+django-annoying==0.8.3
+django-extensions==1.5.5
+django-suit==0.2.14
+django-taggit==0.16.2
+ipython==3.2.1
+ipdb==0.8.1
+fabric
+Markdown==2.6.2
+pytz==2015.4

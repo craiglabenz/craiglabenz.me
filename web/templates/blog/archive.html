@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block innerHeader %}{% endblock innerHeader %}
+
+{% block content %}
+  <div id="archiveWrapper" class="row">
+
+    <div id="entriesArchive" class="col-sm-6 col-xs-12">
+      <h2>Entries</h2>
+      <ul>
+      {% for date_key, entries in ordered_entries_by_month.items %}
+        <h3>{{ date_key }}</h3>
+        {% for entry in entries %}
+          <li><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></li>
+        {% endfor %}
+      {% endfor %}
+      </ul>
+    </div>
+
+    <div id="categoriesArchive" class="col-sm-6 col-xs-12">
+      <h2>Categories</h2>
+      <ul>
+      {% for category in categories %}
+        <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+      {% endfor %}
+      </ul>
+
+
+      <h2>Tags</h2>
+      <ul id="tagsList">
+      {% for tag in tags %}
+        <li><a href="{% url 'entries_by_tag' tag_name=tag.name %}" class="entry-tag tag-{{ tag.slug }}">{{ tag.name }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+{% endblock content %}

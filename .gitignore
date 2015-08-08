@@ -1,0 +1,10 @@
+*.log
+*.pot
+*.pyc
+.DS_Store
+
+# ignore test sqlite db
+default.db
+db.sqlite3
+
+core/settings/override.py

@@ -1,0 +1,81 @@
+<div id="navbar">
+
+  <div class="name-wrapper">
+    <div class="name">
+      <h3><a href="{% url 'home' %}">Craig Labenz</a></h3>
+      <p class="thick">Software Developer</p>
+    </div>
+  </div> <!-- End of .name-wrapper -->
+
+  <span id="navToggle" class="fa fa-bars"></span>
+
+  <div id="navDropdown" class="not-shown">
+    <ul id="navList">
+      <li>
+        <p>
+          <a class="nav-link" href="{% url 'home' %}">
+            <span class="fa fa-home"></span>
+            <span class="nav-link-name">Home</span>
+          </a>
+        </p>
+        <p>
+          <a class="nav-link" href="{% url 'about' %}">
+            <span class="fa fa-user"></span>
+            <span class="nav-link-name">About</span>
+          </a>
+        </p>
+        <p>
+          <a class="nav-link" href="{% url 'archive' %}">
+            <span class="fa fa-archive"></span>
+            <span class="nav-link-name">Archive</span>
+          </a>
+        </p>
+        <p>
+          <a class="nav-link" href="mailto:craig.labenz@gmail.com">
+            <span class="fa fa-envelope"></span>
+            <span class="nav-link-name">Contact Me</span>
+          </a>
+        </p>
+      </li>
+    </ul>
+
+    <p class="section-header">My Projects</p>
+    <p class="project">
+      <a class="thick" href="https://github.com/craiglabenz/django-grapevine">
+        <span>Grapevine</span>
+      </a>
+      <span class="thick">- django email</span>
+    </p>
+    <p class="project">
+      <a class="thick" href="https://github.com/craiglabenz/kivy-okapi">
+        <span>Okapi</span>
+      </a>
+      <span class="thick">- python game framework</span>
+    </p>
+
+    <p class="project">
+      <a class="thick" href="http://www.dominionkingdoms.com">
+        <span>Dominion Kingdoms</span>
+      </a>
+      <span class="thick">- deck-building site</span>
+    </p>
+
+    <p class="section-header">Elsewhere</p>
+
+    <div class="social-icons">
+      <a href="https://github.com/craiglabenz">
+        <span class="fa fa-github"></span>
+      </a>
+      <a href="https://facebook.com/craiglabenz">
+        <span class="fa fa-facebook"></span>
+      </a>
+      <a href="https://twitter.com/craig_labenz">
+        <span class="fa fa-twitter"></span>
+      </a>
+      <a href="https://plus.google.com/113350858172514055988/posts">
+        <span class="fa fa-google-plus"></span>
+      </a>
+    </div> <!-- End of .social-icons -->
+  </div>
+
+</div><!--/.navbar -->

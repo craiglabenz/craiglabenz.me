@@ -1,0 +1,40 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block messages %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{% firstof message.tags 'info' %}">
+        <button class="close" data-dismiss="alert">×</button>
+        {{ message|safe }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endblock messages %}
+
+
+{% block object-tools-items %}
+  {% for list_action in additional_list_actions %}
+      <a class="btn{% if list_action.class %} list_action.class{% endif %}" href="{{ list_action.url }}">{{ list_action.display }}</a>
+  {% endfor %}
+  {{ block.super }}
+{% endblock %}
+
+
+{% block search %}
+    {{ block.super }}
+    <table id="search-fields" class="table table-striped table-condensed">
+        {% for search_field_group in cl.model_admin.field_groups.values %}
+            {% if search_field_group.field_names %}
+            <tr>
+                <td><b>{{ search_field_group.display_name }}</b></td>
+                <td>
+                {% for field in search_field_group.field_names %}
+                    <code>{{ field }}</code>
+                {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+{% endblock search %}

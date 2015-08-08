@@ -1,0 +1,13 @@
+<div class="entry-header">
+  <h2>
+    <a href="{{ entry.get_absolute_url }}">
+      {{ entry.title }}
+    </a>
+  </h2>
+  <div>
+    <span class="entry-date">JUNE 22 2015</span>
+    {% for tag in entry.tags.all %}
+      <a href="{% url 'entries_by_tag' tag_name=tag.name %}" class="entry-tag tag-{{ tag.slug }}"><span>{{ tag.name }}</span></a>
+    {% endfor %}
+  </div>
+</div>
