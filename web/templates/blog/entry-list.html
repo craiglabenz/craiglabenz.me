@@ -1,7 +1,7 @@
 <li class="entry entry-list">
   {% include 'blog/list-entry-header.html' with entry=entry %}
   <div class="entry-body-wrapper">
-    {{ entry.excerpt_html }}
+    {{ entry.excerpt_html|safe }}
     <a class="read-more" href="{{ entry.get_absolute_url }}">
       READ MORE&nbsp;&nbsp;<span class="fa fa-arrow-right"></span>
     </a>
