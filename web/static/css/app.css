@@ -64,7 +64,7 @@ strong {font-weight:700 !important;}
   padding:0;
 }
 
-#blogPosts li {
+#blogPosts > li {
   padding:0px 0px 30px 30px;
   margin-right:10%;
   border-bottom:1px solid #ccc;
