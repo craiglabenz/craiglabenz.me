@@ -265,6 +265,10 @@ a.entry-tag:hover {
   margin-bottom:20px;
 }
 
+.q-and-a li:first-child p {
+  margin: 0.5em 0 0;
+}
+
 .q-and-a a {
   border-bottom:1px solid #C2DBEE;
 }
